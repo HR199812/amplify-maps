@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-citystatelookup-dev-85050-authRole",
+      "UnauthRoleArn": "arn:aws:iam::359836473094:role/amplify-citystatelookup-dev-85050-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::359836473094:role/amplify-citystatelookup-dev-85050-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-citystatelookup-dev-85050-deployment",
+      "UnauthRoleName": "amplify-citystatelookup-dev-85050-unauthRole",
+      "StackName": "amplify-citystatelookup-dev-85050",
+      "StackId": "arn:aws:cloudformation:us-east-1:359836473094:stack/amplify-citystatelookup-dev-85050/04c30960-dd6c-11ec-b532-0ef553f0e555",
+      "AmplifyAppId": "dg8re5g4yqzrl"
+    },
+    "categories": {
+      "auth": {
+        "citystatelookupe613c471": {}
+      }
+    }
+  }
+}
