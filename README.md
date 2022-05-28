@@ -25,3 +25,20 @@ First you need to install AWS-SDK Cli in your system which you can find here htt
 
 After this install aws-amplify in your system.
 To do so follow installation steps on https://docs.amplify.aws/cli/start/install/.
+
+Using "amplify console auth" command you'll be redirected to cognito pool of aws where you can get your applications auth and unauth names.
+- Now, go to IAM -> Roles and select the auth role of your amplify.
+- Create a new inline policy inside permissions.
+- Copy the below permission:- 
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "geo:GetMap*",
+            "Resource": "arn:aws:geo:<REGION>:<ACCOUNTNUMBER>:map/<NAMEOFMAP>"
+        }
+    ]
+}
+- Also in cognito pool under amplify app check the unauthorized access box.
