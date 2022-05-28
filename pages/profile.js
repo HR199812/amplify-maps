@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Auth } from "aws-amplify";
-import { withAuthenticator } from "@aws-amplify/ui-react";
+import { withAuthenticator, MapView } from "@aws-amplify/ui-react";
 import { Signer } from "@aws-amplify/core";
 import Location from "aws-sdk/clients/location";
 
@@ -10,7 +10,7 @@ import Pin from "../components/pin";
 import useInterval from "../components/useInterval";
 
 import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+import Map from "react-map-gl";
 
 import Amplify from "aws-amplify";
 import config from "../src/aws-exports";
@@ -22,8 +22,7 @@ Amplify.configure({
 const mapName = "TestMap"; // HERE IT GOES THE NAME OF YOUR MAP
 const indexName = "new-york-index"; // HERE GOES THE NAME OF YOUR PLACE INDEX
 // const trackerName = "Foobartracker"; // HERE GOES THE NAME OF  YOUR TRACKER
-// const deviceID = "ExampleDevice-4"; // HERE IT GOES THE NAME OF YOUR DEVICE
-
+const deviceID = "ExampleDevice-4"; // HERE IT GOES THE NAME OF YOUR DEVICE
 /**
  * Sign requests made by Mapbox GL using AWS SigV4.
  */
@@ -86,28 +85,28 @@ function Search(props) {
   );
 }
 
-function Track(props) {
-  const handleClick = (event) => {
-    event.preventDefault();
-    props.trackDevice();
-  };
+// function Track(props) {
+//   const handleClick = (event) => {
+//     event.preventDefault();
+//     props.trackDevice();
+//   };
 
-  return (
-    <div className="container">
-      <div className="input-group">
-        <div className="input-group-append">
-          <button
-            onClick={handleClick}
-            className="btn btn-primary"
-            type="submit"
-          >
-            Track
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="container">
+//       <div className="input-group">
+//         <div className="input-group-append">
+//           <button
+//             onClick={handleClick}
+//             className="btn btn-primary"
+//             type="submit"
+//           >
+//             Track
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 function Profile({ signOut, user }) {
   //   const [user, setUser] = useState(null);
   //   useEffect(() => {
@@ -157,9 +156,9 @@ function Profile({ signOut, user }) {
     createClient();
   }, []);
 
-  useInterval(() => {
-    getDevicePosition();
-  }, 30000);
+//   useInterval(() => {
+//     getDevicePosition();
+//   }, 30000);
 
   const searchPlace = (place) => {
     const params = {
@@ -170,6 +169,7 @@ function Profile({ signOut, user }) {
     client.searchPlaceIndexForText(params, (err, data) => {
       if (err) console.error(err);
       if (data) {
+        console.log(data);
         const coordinates = data.Results[0].Place.Geometry.Point;
         setViewport({
           longitude: coordinates[0],
@@ -224,15 +224,15 @@ function Profile({ signOut, user }) {
 //     });
 //   };
 
-  const trackerMarkers = React.useMemo(
-    () =>
-      devPosMarkers.map((pos) => (
-        <Marker key={pos.index} longitude={pos.long} latitude={pos.lat}>
-          <Pin text={pos.index + 1} size={20} />
-        </Marker>
-      )),
-    [devPosMarkers]
-  );
+//   const trackerMarkers = React.useMemo(
+//     () =>
+//       devPosMarkers.map((pos) => (
+//         <Marker key={pos.index} longitude={pos.long} latitude={pos.lat}>
+//           <Pin text={pos.index + 1} size={20} />
+//         </Marker>
+//       )),
+//     [devPosMarkers]
+//   );
 
   return (
     <div>
@@ -243,7 +243,15 @@ function Profile({ signOut, user }) {
               <div className="row">
                 <div className="col-10">
                   <h1>Welcome, {user.username}</h1>
-                  <h1>Test aws location Maps</h1>
+                  <h1>
+                    Test aws location Maps{" "}
+                    <span>
+                      <button style={{fontSize:"16px"}} onClick={signOut}>Signout</button>
+                    </span>
+                  </h1>
+
+                  <br />
+                  <br />
                 </div>
               </div>
             </div>
@@ -251,20 +259,17 @@ function Profile({ signOut, user }) {
               <Search searchPlace={searchPlace} />
             </div>
             <br />
-            <div>
-              {/* <Track trackDevice={getDevicePosition} /> */}
-            </div>
+            <div>{/* <Track trackDevice={getDevicePosition} /> */}</div>
             <br />
-            {/* <div>
+            <div>
               {credentials ? (
                 <ReactMapGL
                   {...viewport}
                   width="100%"
-                  height="100vh"
-                  //   transformRequest={transformRequest(credentials)}
+                  height="60vh"
+                  transformRequest={transformRequest(credentials)}
                   mapStyle={mapName}
                   onViewportChange={setViewport}
-                  w
                 >
                   <Marker
                     longitude={marker.longitude}
@@ -275,7 +280,7 @@ function Profile({ signOut, user }) {
                     <Pin size={20} />
                   </Marker>
 
-                  {trackerMarkers}
+                  {/* {trackerMarkers} */}
 
                   <div style={{ position: "absolute", left: 20, top: 20 }}>
                     <NavigationControl showCompass={false} />
@@ -284,11 +289,10 @@ function Profile({ signOut, user }) {
               ) : (
                 <h1>Loading...</h1>
               )}
-            </div> */}
+            </div>
           </div>
         </div>
       )}
-      <button onClick={signOut}>Signout</button>
       {/* <AmplifySignOut /> */}
     </div>
   );

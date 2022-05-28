@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Link from "next/link";
 import { css } from '@emotion/css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 
 export default function MyApp({ Component, pageProps }) {

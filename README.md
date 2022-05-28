@@ -21,7 +21,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## How to use AWS-Location and Amplify.
 
-First you need to install AWS-SDK Cli in your system which you can find here [https://docs.aws.amazon.com/cli/v1/userguide/install-macos.html]. Make sure to setup environment path variables and configure aws-sdk with your access_key_id and secret_key in your cli.
+First you need to install AWS-SDK Cli in your system which you can find here https://docs.aws.amazon.com/cli/v1/userguide/install-macos.html . Make sure to setup environment path variables and configure aws-sdk with your access_key_id and secret_key in your cli.
 
 After this install aws-amplify in your system.
-To do so follow installation steps on [https://docs.amplify.aws/cli/start/install/].
+To do so follow installation steps on https://docs.amplify.aws/cli/start/install/.
