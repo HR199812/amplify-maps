@@ -18,6 +18,9 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## What the end result looks like
+<img width="1414" alt="Screenshot 2022-05-28 at 2 44 24 PM" src="https://user-images.githubusercontent.com/39455725/170819123-285df825-5589-439f-8c38-0f7e8e346272.png">
+
 
 ## How to use AWS-Location and Amplify.
 
