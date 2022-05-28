@@ -44,4 +44,6 @@ Using "amplify console auth" command you'll be redirected to cognito pool of aws
         }
     ]
 }
-- Also in cognito pool under amplify app check the unauthorized access box.
+- Also in cognito pool under amplify app check the unauthorized access box for unauthorized access to the amplify-application.
+Now your application is setup. Make sure to use latest version of react-map-gl and mapbox-gl@1.0.0
+
